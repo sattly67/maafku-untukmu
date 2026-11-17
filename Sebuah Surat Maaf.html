@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sebuah Surat Maaf</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f6efe0;--ink:#3b2f2a;--rose:#a4474f;--gold:#c9a45c;--night1:#14101f;--night2:#2a1d3a;--serif:'Cormorant Garamond',Georgia,serif;--script:'Dancing Script',cursive}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{overflow:hidden;background:radial-gradient(circle at 50% 30%,var(--night2),var(--night1));color:var(--ink);font-family:var(--serif);display:flex;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+.dot{position:fixed;bottom:-10px;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.5;animation:up linear infinite}
+@keyframes up{to{transform:translateY(-110vh) translateX(30px);opacity:0}}
+.wrap{perspective:1800px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.book{position:relative;width:min(88vw,400px);height:min(72vh,560px);transition:transform 1s;transform-style:preserve-3d}
+@media(min-width:900px){.book.open{transform:translateX(50%)}}
+.leaf{position:absolute;inset:0;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.2s cubic-bezier(.6,.05,.3,1)}
+.leaf.flipped{transform:rotateY(-180deg)}
+.f,.b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:4px 14px 14px 4px;padding:34px 30px;overflow:hidden;box-shadow:0 10px 40px #0008;background:linear-gradient(90deg,#e6dbc3,var(--paper) 8%,var(--paper))}
+.b{transform:rotateY(180deg);border-radius:14px 4px 4px 14px;background:linear-gradient(270deg,#e6dbc3,var(--paper) 8%,var(--paper));display:flex;align-items:center;justify-content:center;font-size:42px;color:var(--gold);opacity:.95}
+.cover{background:linear-gradient(135deg,#5a1f2c,#3a1220);color:var(--gold);text-align:center;display:flex;flex-direction:column;justify-content:center;gap:16px;border:2px solid var(--gold);outline:6px solid #3a1220;outline-offset:-14px}
+.cover h1{font-family:var(--script);font-size:46px;font-weight:600;line-height:1.1}
+.cover .s{font-style:italic;font-size:19px;color:#e8d3a6}
+.cover button{align-self:center;margin-top:12px}
+h2{font-family:var(--script);color:var(--rose);font-size:30px;margin-bottom:16px;font-weight:600}
+.f p{font-size:20px;line-height:1.55;margin-bottom:13px}
+.f em{color:var(--rose)}
+.l{opacity:0}
+.show .l{animation:rise 1s both;animation-delay:calc(var(--i)*.4s + .5s)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pg{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:13px;opacity:.5;letter-spacing:2px}
+button{font-family:var(--serif);font-size:18px;cursor:pointer;border:1px solid var(--gold);background:transparent;color:inherit;padding:9px 18px;border-radius:30px;transition:.3s}
+button:hover{background:var(--gold);color:#2a1d3a}
+.f button{color:var(--rose);border-color:var(--rose)}.f button:hover{background:var(--rose);color:#fff}
+.sky{position:relative;height:210px;border-radius:12px;background:linear-gradient(#1c1530,#3a2850);cursor:pointer;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#e8d3a6;font-style:italic;user-select:none;text-align:center;padding:10px}
+.fl{position:absolute;font-size:15px;color:#ffe9b0;white-space:nowrap;pointer-events:none;animation:fl 3.4s forwards;text-shadow:0 0 8px #ffd77a}
+@keyframes fl{from{opacity:0;transform:translateY(0)}20%{opacity:1}to{opacity:0;transform:translateY(-150px)}}
+.heart{width:120px;height:120px;margin:6px auto;position:relative;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
+.heart svg{width:100%;height:100%;filter:drop-shadow(0 0 12px #a4474f66)}
+.heart.beat{animation:beat 1.1s infinite}
+@keyframes beat{50%{transform:scale(1.12)}}
+.bar{height:6px;border-radius:6px;background:#0002;overflow:hidden;margin:10px 0 14px}
+.bar i{display:block;height:100%;width:0;background:var(--rose)}
+.nav{display:flex;gap:18px;align-items:center;color:#e8d3a6}
+.nav button{padding:6px 16px}
+.nav button:disabled{opacity:.3;pointer-events:none}
+#mus{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:200;padding:6px 14px;font-size:15px;color:#e8d3a6}
+.ch{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.ch button{text-align:left;font-size:17px;line-height:1.3;border-radius:14px}
+#rep{font-style:italic;color:var(--rose);margin-top:12px;font-size:19px;line-height:1.5;min-height:60px}
+
+.book{filter:drop-shadow(0 30px 28px #000b)}
+.wrap:before{content:"";position:absolute;bottom:34px;width:min(96vw,460px);height:40px;background:radial-gradient(#0009,transparent 70%);z-index:-1}
+.f,.b{background:radial-gradient(circle at 25% 12%,#fffaf0bb,transparent 55%),repeating-linear-gradient(0deg,#0000 0 29px,#b9a98a24 29px 30px),linear-gradient(90deg,#cdbf9f 0,#e9dfc7 3%,#f6efe0 13%,#f1e8d3 100%);box-shadow:1px 0 0 #e8dcc2,3px 1px 0 #d9ccb0,5px 2px 0 #cbbd9f,7px 3px 0 #bdae90,inset -14px 0 20px #8a6a3a22;padding:34px 28px 42px 42px}
+.b{background:radial-gradient(circle at 75% 12%,#fffaf0bb,transparent 55%),linear-gradient(270deg,#cdbf9f 0,#e9dfc7 3%,#f6efe0 13%,#f1e8d3 100%);box-shadow:-1px 0 0 #e8dcc2,-3px 1px 0 #d9ccb0,-5px 2px 0 #cbbd9f,inset 14px 0 20px #8a6a3a22}
+.f:after{content:"";position:absolute;inset:0 auto 0 0;width:26px;background:linear-gradient(90deg,#0000003a,transparent);pointer-events:none}
+.cover{background:repeating-radial-gradient(circle at 50% 50%,#ffffff0a 0 1px,#0000 1px 3px),radial-gradient(circle at 30% 20%,#7a2a3a,#3a1220 75%);box-shadow:0 0 0 1px #1a0810,inset 0 0 40px #000a,5px 3px 0 #2a0c16;text-shadow:0 1px 0 #000a,0 0 10px #c9a45c55}
+.cover:before{content:"";position:absolute;right:38px;bottom:0;width:20px;height:96px;background:linear-gradient(90deg,#8e3340,#b4545f,#8e3340);clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%)}
+.f p,.ch button,#rep,#tw{font-family:'Caveat',var(--script),cursive}
+.f p{font-size:25px;line-height:1.3;margin-bottom:12px}
+.ch button{font-size:22px}#rep{font-size:24px}
+h2{font-size:32px;line-height:1.1}
+#tw{font-size:22px;line-height:1.32;max-height:calc(min(72vh,560px) - 150px);overflow-y:auto;white-space:pre-wrap;padding-right:6px;scrollbar-width:thin}
+.cr{display:inline-block;width:2px;height:1em;background:var(--rose);vertical-align:-3px;margin-left:1px;animation:bl 1s infinite}
+@keyframes bl{50%{opacity:0}}
+</style></head><body>
+
+<button id="mus" title="Musik">♪ musik: mati</button>
+<div class="wrap">
+<div class="book" id="book"></div>
+<div class="nav"><button id="prev">‹</button><span id="cnt">&nbsp;</span><button id="next">›</button></div>
+</div>
+
+<script>
+/* ============ UBAH DI SINI ============ */
+const TO   = "Naya";          // nama penerima
+const FROM = "Satria";           // namamu
+const MUSIC_URL = "";         // isi link/berkas lagu, mis. "lagu.mp3". Kosong = musik lembut bawaan
+/* ====================================== */
+
+const pages = [
+`<div class="f cover"><div class="s">sebuah surat kecil</div><h1>Maaf, dari hati yang paling jujur</h1><div class="s">untuk ${TO}<br>dari ${FROM}</div><button id="openb">Buka bukunya</button></div>`,
+`<h2>Hai…</h2><p class="l">Ini aku.</p><p class="l">Buku kecil ini kubuat sendiri, nggak disuruh siapa-siapa. Aku cuma pengin ngomong dengan benar, pelan-pelan, tanpa buru-buru.</p><p class="l">Boleh ya, aku cerita sebentar?</p>`,
+`<h2>Soal aku yang kebanyakan nanya</h2><p class="l">Aku sadar, aku terlalu banyak nanya dan sering mikirin hal-hal sampai kejauhan.</p><p class="l">Niatku sebenarnya cuma pengin dekat. Tapi caraku bikin kamu capek, terus akhirnya kesal.</p><p class="l"><em>Maaf</em> ya, udah bikin ruangmu terasa sesak.</p>`,
+`<h2>Tarik napas dulu</h2><p class="l">Sentuh langit di bawah ini.</p><div class="sky l" id="sky"><span id="skyt">sentuh di mana saja ✦</span></div><p class="l" id="skyd" style="font-size:20px;opacity:.8;margin-top:10px"></p>`,
+`<h2>Soal candaan itu</h2><p class="l">Aku bercanda kelewat batas, dan kamu jadi nggak nyaman.</p><p class="l">Harusnya aku nggak bercanda soal rasa kangenmu ke orang lama. Itu perasaanmu. Kamu berhak merasakannya tanpa aku ledek.</p><p class="l"><em>Maaf.</em> Aku beneran menyesal.</p>`,
+`<h2>Yang kupikirin sejak itu</h2><p class="l">Setelah kamu diam, aku duduk lama dan mikir.</p><p class="l">Ternyata dekat sama seseorang bukan soal seberapa sering kita nanya atau bercanda, tapi soal seberapa kita bikin dia merasa aman.</p><p class="l">Dan kemarin, aku belum bikin kamu merasa begitu.</p>`,
+`<h2>Tanpa “tapi”</h2><p class="l">Aku nggak lagi bela diri. Nggak ada alasan, nggak ada “tapi”.</p><p class="l">Aku mau belajar nanya seperlunya, nahan candaan sebelum dia melukai, dan kasih kamu ruang kalau kamu butuh.</p>`,
+`<h2>Yang kusyukuri</h2><p class="l">Aku senang bisa ngobrol sama kamu. Beneran.</p><p class="l">Mungkin karena itu aku jadi kebablasan. Tapi rasa senang itu nggak boleh jadi alasan buat bikin kamu nggak nyaman.</p>`,
+`<h2>Satu hal lagi</h2><p class="l" style="margin-bottom:0">Tahan hatinya sebentar.</p><div class="heart l" id="heart"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.3-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.7-8 11-8 11z" fill="#a4474f"/></svg></div><div class="bar l"><i id="fill"></i></div><p id="hr" style="font-style:italic;color:var(--rose)"></p>`,
+`<h2>Harapanku</h2><p class="l">Semoga kedekatan kita nggak berhenti di sini. Tapi aku nggak akan maksa. Apa pun jawabanmu, aku hargai.</p><div class="ch l"><button data-r="Makasih udah ngasih aku kesempatan. Aku bakal jagain dengan lebih baik. 🤍">Yuk, kita lanjut pelan-pelan</button><button data-r="Tentu. Ambil waktu sebanyak yang kamu butuh. Aku di sini, tanpa nuntut apa-apa. 🤍">Aku butuh waktu dulu</button></div><div id="rep"></div>`,
+`<h2>Surat terakhir</h2><div id="tw"></div>`
+];
+const LETTER=`Hai, ${TO}.
+
+Kalau kamu sampai di halaman ini, makasih ya. Beneran. Aku tahu mungkin kamu masih kesal, dan itu wajar banget.
+
+Ada yang mau kujelasin. Bukan buat bela diri, cuma biar kamu tahu apa yang sebenarnya ada di kepalaku waktu itu.
+
+Waktu kamu pasang catatan di IG, kedengarannya kayak lagi kangen seseorang. Terus aku bercanda soal itu, seolah-olah kamu lagi kangen orang lama. Padahal aku nggak tahu apa-apa. Ternyata nggak ada siapa-siapa. Kamu cuma suka sama lagunya.
+
+Dan jujur, candaan itu bukan keluar dari overthinking. Diam-diam aku sempat mikir, jangan-jangan kamu kangennya sama aku. Makanya aku bercanda, makanya aku nanya terus. Ternyata aku salah baca.
+
+Itu bukan salahmu sama sekali. Kamu boleh suka sebuah lagu tanpa harus ada alasan apa pun di baliknya. Salahku, karena aku menebak-nebak isi hatimu lalu menjadikannya bahan candaan, sampai kamu nggak nyaman.
+
+Aku juga minta maaf karena terlalu banyak nanya. Niatku cuma pengin dekat, tapi aku lupa kalau peduli itu ada takarannya. Aku nggak ngasih kamu ruang buat napas.
+
+Surat ini aku tulis sendiri, nggak ada yang nyuruh. Aku cuma nggak mau kamu mikir aku nggak peduli sama perasaanmu.
+
+Aku nggak minta kamu langsung maafin. Ambil waktu selama yang kamu butuh. Tapi kalau suatu hari kamu mau, aku berharap kita bisa baik-baik lagi, pelan-pelan, dengan cara yang lebih tenang dan lebih saling jaga.
+
+Apa pun yang kamu putuskan, semoga kamu selalu baik-baik aja.
+
+Dengan tulus,
+${FROM}`;
+function typeLetter(){
+  const el=document.getElementById('tw'),cr=document.createElement('span');cr.className='cr';
+  const t=document.createTextNode('');el.append(t,cr);let i=0;
+  (function n(){
+    if(i>=LETTER.length)return;
+    const c=LETTER[i++];t.nodeValue+=c;el.scrollTop=el.scrollHeight;
+    setTimeout(n,/[.,!?]/.test(c)?260:(c==='\n'?380:42));
+  })();
+}
+
+const book = document.getElementById('book'), N = pages.length;
+const orn = ['❦','✦','❧','✿'];
+pages.forEach((p,k)=>{
+  const d=document.createElement('div');d.className='leaf';
+  const pg = k? `<div class="pg">${k} / ${N-1}</div>` : '';
+  d.innerHTML = (k? `<div class="f">${p}${pg}</div>` : p) + `<div class="b">${orn[k%4]}</div>`;
+  d.querySelectorAll('.l').forEach((e,i)=>e.style.setProperty('--i',i));
+  book.appendChild(d);
+});
+const leaves=[...book.children]; let idx=0;
+function z(){leaves.forEach((l,k)=>l.style.zIndex=k<idx?k:N-k)}
+function show(){ if(idx===N-1&&!window.typed){window.typed=1;setTimeout(typeLetter,1500)}
+  leaves.forEach((l,k)=>{l.classList.toggle('flipped',k<idx);l.querySelector('.f').classList.toggle('show',k===idx)});
+  book.classList.toggle('open',idx>0);
+  prev.disabled=idx===0; next.disabled=idx===N-1;
+  cnt.textContent = idx? `halaman ${idx}` : '\u00a0';
+}
+function go(d){
+  const n=idx+d; if(n<0||n>=N)return;
+  leaves[d>0?idx:n].style.zIndex=100;
+  idx=n; show(); setTimeout(z,750);
+}
+z(); show();
+prev.onclick=()=>go(-1); next.onclick=()=>go(1);
+document.getElementById('openb').onclick=()=>{go(1);music(true)};
+addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
+
+/* Intermezzo 1: bintang */
+const words=["Aku dengerin.","Kamu berhak nyaman.","Makasih udah sabar.","Aku lagi belajar.","Perasaanmu penting.","Aku menghargaimu."];
+let tc=0;
+const sky=document.getElementById('sky');
+sky.addEventListener('click',e=>{
+  const r=sky.getBoundingClientRect(),s=document.createElement('span');
+  s.className='fl';s.textContent='✦ '+words[tc%words.length];
+  s.style.left=Math.max(4,Math.min(e.clientX-r.left-50,r.width-170))+'px';
+  s.style.top=(e.clientY-r.top)+'px';
+  sky.appendChild(s);setTimeout(()=>s.remove(),3500);
+  document.getElementById('skyt').style.display='none';
+  if(++tc===5)document.getElementById('skyd').textContent='Itu yang pengin kutitipin ke bintang-bintang.';
+});
+
+/* Intermezzo 2: hati */
+const heart=document.getElementById('heart'),fill=document.getElementById('fill'),hr=document.getElementById('hr');
+let v=0,hold=false,done=false;
+heart.addEventListener('pointerdown',e=>{hold=true;heart.classList.add('beat')});
+['pointerup','pointerleave','pointercancel'].forEach(t=>heart.addEventListener(t,()=>{hold=false;if(!done)heart.classList.remove('beat')}));
+setInterval(()=>{
+  if(done)return;
+  v=Math.max(0,Math.min(100,v+(hold?2:-1.5)));fill.style.width=v+'%';
+  if(v>=100){done=true;hr.textContent='Makasih udah baca sampai sini. Itu berarti banget buat aku.'}
+},30);
+
+/* Pilihan akhir */
+document.querySelectorAll('.ch button').forEach(b=>b.onclick=()=>{
+  const r=document.getElementById('rep');r.style.opacity=0;
+  setTimeout(()=>{r.textContent=b.dataset.r;r.style.transition='opacity 1s';r.style.opacity=1},200);
+});
+
+/* Musik: pakai MUSIC_URL bila diisi, jika kosong pakai pad lembut bawaan */
+let ac,master,tm,step=0,au,playing=false;
+const ch=[[220,261.6,329.6],[174.6,220,261.6],[261.6,329.6,392],[196,246.9,293.7]];
+function pad(){const t=ac.currentTime;ch[step++%4].forEach(f=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.05,t+2);g.gain.linearRampToValueAtTime(0,t+6.5);o.connect(g);g.connect(master);o.start(t);o.stop(t+7)})}
+function music(on){
+  if(on===playing)return;playing=on;
+  mus.textContent='♪ musik: '+(on?'nyala':'mati');
+  try{
+    if(MUSIC_URL){au=au||Object.assign(new Audio(MUSIC_URL),{loop:true,volume:.5});on?au.play():au.pause();return}
+    if(on){ac=ac||new (window.AudioContext||window.webkitAudioContext)();master=master||Object.assign(ac.createGain(),{});master.connect(ac.destination);ac.resume();pad();tm=setInterval(pad,5500)}
+    else{clearInterval(tm);master&&master.disconnect()}
+  }catch(e){}
+}
+mus.onclick=()=>music(!playing);
+
+/* Partikel latar */
+for(let i=0;i<26;i++){const d=document.createElement('i');d.className='dot';d.style.left=Math.random()*100+'vw';d.style.animationDuration=(9+Math.random()*12)+'s';d.style.animationDelay=(-Math.random()*15)+'s';document.body.appendChild(d)}
+</script></body></html>
